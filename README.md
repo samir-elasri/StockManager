@@ -1,0 +1,1 @@
+# StockManager.sln
