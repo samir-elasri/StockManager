@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: stockdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+  api:
+    build:
+      context: .
+      dockerfile: ./StockManager.Api/Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=stockdb;Username=postgres;Password=postgres
+      - Jwt__Key=very-secret-key-should-change
+      - Jwt__Issuer=stockapp
+      - ADMIN_EMAIL=admin@local
+      - ADMIN_PASSWORD=Admin123!
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - db
+    ports:
+      - "5000:80"
+
+volumes:
+  pgdata:
