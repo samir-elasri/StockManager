@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace StockManager.Domain.Entities
 {
-    internal class ProductVariant
+    public class ProductVariant
     {
+        public Guid Id { get; private set; } = Guid.NewGuid();
+        public string Name { get; private set; } = null!;
+        public decimal Price { get; private set; }
+        public string? Photo { get; private set; }
+        public Guid ProductId { get; private set; }
+
+        private ProductVariant() { }
+        public ProductVariant(string name, decimal price, Guid productId, string? photo = null)
+        {
+            Name = name; Price = price; ProductId = productId; Photo = photo;
+        }
     }
 }

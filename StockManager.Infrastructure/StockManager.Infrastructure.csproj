@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StockManager.Application\StockManager.Application.csproj" />
     <ProjectReference Include="..\StockManager.Domain\StockManager.Domain.csproj" />
   </ItemGroup>
 
