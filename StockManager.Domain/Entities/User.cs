@@ -18,6 +18,7 @@ namespace StockManager.Domain.Entities
         public User() { } // EF
         public User(string email, string passwordHash)
         {
+            Id = Guid.NewGuid();
             Email = email;
             PasswordHash = passwordHash;
         }
