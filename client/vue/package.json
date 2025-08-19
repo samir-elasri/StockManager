@@ -1,24 +1,21 @@
 {
-  "name": "vue",
+  "name": "stockmanager-frontend",
+  "version": "0.0.1",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --port 5173"
   },
   "dependencies": {
-    "pinia": "^3.0.3",
+    "pinia": "^2.0.32",
     "primeicons": "^7.0.0",
-    "primevue": "^4.3.7",
-    "vue": "^3.5.18"
+    "primevue": "^4.9.3",
+    "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.1",
-    "@vue/tsconfig": "^0.7.0",
-    "typescript": "~5.8.3",
-    "vite": "^7.1.2",
-    "vue-tsc": "^3.0.5"
+    "@types/node": "^18.0.0",
+    "typescript": "^5.5.2",
+    "vite": "^5.0.0"
   }
 }
