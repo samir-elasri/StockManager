@@ -14,4 +14,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\StockManager.Application\StockManager.Application.csproj" />
+    <ProjectReference Include="..\StockManager.Infrastructure\StockManager.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
