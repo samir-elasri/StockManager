@@ -8,14 +8,44 @@
     "preview": "vite preview --port 5173"
   },
   "dependencies": {
-    "pinia": "^2.0.32",
+    "@ckeditor/ckeditor5-build-classic": "^43.2.0",
+    "@ckeditor/ckeditor5-vue": "^7.2.0",
+    "@primevue/themes": "4.0.0-rc.2",
+    "@vuelidate/core": "^2.0.3",
+    "@vuelidate/validators": "^2.0.4",
+    "axios": "^1.7.2",
+    "dayjs": "^1.11.12",
+    "pinia": "^2.1.7",
     "primeicons": "^7.0.0",
-    "primevue": "^4.9.3",
-    "vue": "^3.3.4"
+    "primevue": "4.0.0-rc.2",
+    "tailwindcss-primeui": "^0.3.4",
+    "vue": "^3.4.29",
+    "vue-i18n": "9",
+    "vue-middleware": "^1.0.0-alpha.7",
+    "vue-router": "^4.3.3",
+    "vue3-cookies": "^1.0.6"
   },
   "devDependencies": {
-    "@types/node": "^18.0.0",
-    "typescript": "^5.5.2",
-    "vite": "^5.0.0"
+    "@primevue/auto-import-resolver": "^4.0.0",
+    "@rushstack/eslint-patch": "^1.8.0",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/axios": "^0.14.0",
+    "@types/node": "^20.14.5",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "@vue/tsconfig": "^0.5.1",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.23.0",
+    "npm-run-all2": "^6.2.0",
+    "postcss": "^8.4.39",
+    "prettier": "^3.2.5",
+    "tailwindcss": "^3.4.4",
+    "typescript": "~5.4.0",
+    "unplugin-vue-components": "^0.27.2",
+    "vite": "^6.0.11",
+    "vite-plugin-vue-devtools": "^7.3.1",
+    "vue-tsc": "^2.0.21"
   }
 }

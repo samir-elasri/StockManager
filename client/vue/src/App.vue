@@ -7,5 +7,4 @@ export default {}
 </script>
 
 <style>
-/* global app styles are in styles.css */
 </style>
