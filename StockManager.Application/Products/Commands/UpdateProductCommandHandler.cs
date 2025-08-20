@@ -16,7 +16,6 @@ namespace StockManager.Application.Products.Commands
             product.UpdatePrice(request.Price);
             // manually update Name/Photo since we made only UpdatePrice method in entity
             typeof(Product).GetProperty("Name")?.SetValue(product, request.Name);
-            typeof(Product).GetProperty("Photo")?.SetValue(product, request.Photo);
 
             _repo.Update(product);
             await _repo.SaveChangesAsync(ct);

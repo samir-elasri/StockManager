@@ -13,7 +13,7 @@ namespace StockManager.Domain.Entities
         public string PasswordHash { get; private set; } = null!;
 
         // navigation
-        public ICollection<Category> Categories { get; private set; } = new List<Category>();
+        public ICollection<Product> Products { get; private set; } = new List<Product>();
 
         public User() { } // EF
         public User(string email, string passwordHash)

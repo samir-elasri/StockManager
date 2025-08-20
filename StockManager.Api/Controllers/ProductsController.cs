@@ -13,34 +13,19 @@ namespace StockManager.Api.Controllers
         public ProductsController(IMediator mediator) => _mediator = mediator;
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateProductCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateProductCommand cmd)
         {
-            var id = await _mediator.Send(command);
+            var id = await _mediator.Send(cmd);
             return Ok(new { ProductId = id });
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductCommand command)
+        [HttpGet("{userId:guid}")]
+        public async Task<IActionResult> GetByUser([FromRoute] Guid userId)
         {
-            if (id != command.Id) return BadRequest("Mismatched ID");
-            await _mediator.Send(command);
-            return NoContent();
+            var items = await _mediator.Send(new GetProductsQuery(userId));
+            return Ok(items);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            await _mediator.Send(new DeleteProductCommand(id));
-            return NoContent();
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var userId = Guid.Parse(User.FindFirst("sub")!.Value);
-
-            var products = await _mediator.Send(new GetProductsQuery(userId));
-            return Ok(products);
-        }
+        // Optional: Update and Delete endpoints here
     }
 }

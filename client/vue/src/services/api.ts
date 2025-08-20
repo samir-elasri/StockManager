@@ -22,7 +22,8 @@ export async function apiFetch(path: string, init: RequestInit = {}) {
 
   const res = await fetch(`${BASE}${path}`, {
     ...init,
-    headers
+    headers,
+    credentials: 'include'
   })
 
   if (!res.ok) {

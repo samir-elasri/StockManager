@@ -5,7 +5,6 @@ namespace StockManager.Application.Products.Commands
     public record UpdateProductCommand(
         Guid Id,
         string Name,
-        decimal Price,
-        string? Photo
+        decimal Price
     ) : IRequest<Unit>;
 }
