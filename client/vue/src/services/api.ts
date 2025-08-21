@@ -15,7 +15,6 @@ export async function apiFetch(path: string, init: RequestInit = {}) {
     ...(init.headers as Record<string,string> || {})
   }
 
-  // we pass user id header optionally (API expects userId param in many endpoints)
   if (authUserId) {
     headers['X-User-Id'] = authUserId
   }
@@ -30,7 +29,7 @@ export async function apiFetch(path: string, init: RequestInit = {}) {
     const text = await res.text()
     throw new Error(`${res.status} ${res.statusText} - ${text}`)
   }
-  // no content
+  
   if (res.status === 204) return null
   return res.json()
 }

@@ -1,24 +1,26 @@
 <template>
     <div class="container">
       <div class="card">
-        <h2>Products</h2>
+        <h2 class="pb-4 text-3xl font-medium">Products</h2>
         <div v-if="!userId">
           <p>Please register (or paste a userId) to load products.</p>
         </div>
   
         <div v-if="userId">
           <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;">
-            <InputText v-model="newName" placeholder="New product name" />
-            <Button label="Create" @click="createProduct" />
+            <InputText v-model="productSchema.name" placeholder="New product name" />
+            <InputText v-model="productSchema.price" placeholder="New product price" />
+            <Button label="Create" @click="handleCreate" />
           </div>
   
-          <DataTable :value="products" responsiveLayout="scroll">
+          <DataTable :value="productsStore.products" responsiveLayout="scroll">
             <Column field="id" header="Id" />
             <Column field="name" header="Name" />
+            <Column field="price" header="price" />
           </DataTable>
         </div>
   
-        <div v-if="error" style="color:var(--p-error-color);margin-top:1rem">{{ error }}</div>
+        <div v-if="productsStore.error" style="color:var(--p-error-color);margin-top:1rem">{{ productsStore.error }}</div>
       </div>
     </div>
 </template>
@@ -26,40 +28,24 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useAuthStore } from '../stores/auth'
-import { apiFetch } from '../services/api'
+import { useProductsStore } from '../stores/ProductsStore'
 
 const auth = useAuthStore()
-const products = ref<any[]>([])
-const newName = ref('')
-const error = ref<string | null>(null)
+const productsStore = useProductsStore()
 const userId = auth.userId
+const productSchema = ref({
+  name: '',
+  price: ''
+})
 
-const load = async () => {
-  if (!userId) return
-  try {
-    const r = await apiFetch(`/Products/${userId}`)
-    products.value = r
-  } catch (ex: any) {
-    error.value = ex.message
-  }
+const handleCreate = async () => {
+  await productsStore.createProduct(userId!, productSchema.value)
+  productSchema.value = { name: '', price: '' }
 }
 
-const createProduct = async () => {
-  if (!userId) {
-    error.value = 'You must register first.'
-    return
+onMounted(() => {
+  if (userId) {
+    productsStore.fetchProducts(userId)
   }
-  try {
-    await apiFetch('/Products', {
-      method: 'POST',
-      body: JSON.stringify({ name: newName.value, userId })
-    })
-    newName.value = ''
-    await load()
-  } catch (ex: any) {
-    error.value = ex.message
-  }
-}
-
-onMounted(load)
+})
 </script>
